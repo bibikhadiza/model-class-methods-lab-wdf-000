@@ -10,7 +10,7 @@ class Classification < ActiveRecord::Base
 
   def self.longest
     result = Boat.all.order(length: :desc).limit(1)
-      self.joins(:boats).where("boats.id" => result.map(&:id))
+      self.joins(:boats).where("boats.id" => result.ids)
   end
 
 

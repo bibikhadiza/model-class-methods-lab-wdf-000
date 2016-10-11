@@ -19,12 +19,11 @@ class Captain < ActiveRecord::Base
 
 
   def self.talented_seamen
-    result = self.sailors & self.motorboaters
-      self.all.where("id" => result.map(&:id))
+    self.sailors.where(id: self.motorboaters.ids)
   end
 
   def self.non_sailors
-    self.all.where.not(id: self.sailors.map(&:id))
+    self.all.where.not(id: self.sailors.ids)
   end
 
 
